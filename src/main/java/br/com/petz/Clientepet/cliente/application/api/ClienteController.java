@@ -1,5 +1,7 @@
 package br.com.petz.Clientepet.cliente.application.api;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.petz.Clientepet.cliente.application.service.CLienteService;
@@ -19,6 +21,14 @@ public class ClienteController implements ClienteAPI {
 		ClienteIdResponse cliente = clienteService.cadastraNovoCliente(clienteRequest);
 		log.info("[finaliza] ClienteController - postCadastraNovoCliente");
 		return cliente;
+	}
+
+	@Override
+	public List<ClienteListResponse> getListaTodosClientes() {
+		log.info("[inicia] ClienteController - getListaTodosClientes");
+		List<ClienteListResponse> clienteList = clienteService.listaCliente();
+		log.info("[finaliza] ClienteController - getListaTodosClientes");
+		return clienteList;
 	}
 
 }
