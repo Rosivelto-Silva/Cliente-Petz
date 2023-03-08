@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,12 +20,12 @@ public interface ClienteAPI {
 
 	@PostMapping
 	@ResponseStatus(value = HttpStatus.CREATED)
-	ClienteIdResponse postCadastraNovoCliente(@RequestBody ClienteRequest clienteRequest); 
-	
+	ClienteIdResponse postCadastraNovoCliente(@RequestBody ClienteRequest clienteRequest);
+
 	@GetMapping
 	@ResponseStatus(value = HttpStatus.OK)
 	List<ClienteListResponse> getListaTodosClientes();
-	
+
 	@GetMapping("{idCliente}")
 	@ResponseStatus(value = HttpStatus.OK)
 	ClienteDetalhadoResponse getVisualizaDetalhesCliente(@PathVariable UUID idCliente);
@@ -32,7 +33,10 @@ public interface ClienteAPI {
 	@PatchMapping("{idCliente}")
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
 	void patchAlteraCliente(@PathVariable UUID idCliente,
-			@RequestBody @Valid ClienteAlteradoRequest clienteAlteradoRequest );
+			@RequestBody @Valid ClienteAlteradoRequest clienteAlteradoRequest);
+
+	@DeleteMapping ("{idCliente}")
+	@ResponseStatus(value = HttpStatus.NO_CONTENT)
+	void deleteClienteByld(@PathVariable UUID idCliente);
 	
 }
-
