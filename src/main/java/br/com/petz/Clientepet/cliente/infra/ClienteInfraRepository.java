@@ -1,11 +1,14 @@
 package br.com.petz.Clientepet.cliente.infra;
 
 import java.util.List;
+import java.util.UUID;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
 import br.com.petz.Clientepet.cliente.application.repository.ClienteRepository;
 import br.com.petz.Clientepet.cliente.domain.Cliente;
+import br.com.petz.Clientepet.handler.APIException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
@@ -30,6 +33,14 @@ public class ClienteInfraRepository implements ClienteRepository {
 		List<Cliente> listaClientes = repository.findAll();
 		log.info("[finaliza] ClienteInfraRepository - buscaTodosClientes");
 		return listaClientes;
+	}
+
+	@Override
+	public Cliente buscaClientePorId(UUID idCliente) {
+		log.info("[inicia] ClienteInfraRepository - buscaClientePorId");
+		var cliente = repository.findById(idCliente).orElseThrow(() -> APIException.build(HttpStatus.INTERNAL_SERVER_ERROR, "INFORME AO ADIMINISTRADOR DO SISTEMA"));
+		log.info("[finaliza] ClienteInfraRepository - buscaClientePorId");
+		return cliente;
 	}
 
 }
