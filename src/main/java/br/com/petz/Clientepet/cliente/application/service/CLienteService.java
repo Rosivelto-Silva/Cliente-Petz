@@ -3,6 +3,7 @@ package br.com.petz.Clientepet.cliente.application.service;
 import java.util.List;
 import java.util.UUID;
 
+import br.com.petz.Clientepet.cliente.application.api.ClienteAlteradoRequest;
 import br.com.petz.Clientepet.cliente.application.api.ClienteDetalhadoResponse;
 import br.com.petz.Clientepet.cliente.application.api.ClienteIdResponse;
 import br.com.petz.Clientepet.cliente.application.api.ClienteListResponse;
@@ -12,4 +13,5 @@ public interface CLienteService {
 	ClienteIdResponse cadastraNovoCliente(ClienteRequest clienteRequest);
 	List<ClienteListResponse> listaCliente();
 	ClienteDetalhadoResponse clienteDetalhado(UUID idCliente);
+	void alteraCliente(UUID idCliente, ClienteAlteradoRequest clienteAlteradoRequest);
 }
